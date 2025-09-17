@@ -1,0 +1,34 @@
+---
+import Layout from "../layouts/Layout.astro";
+import GraphicSpecies from "../components/GraphicSpecies.astro";
+import { Tabs, TabsList, TabsTab, TabsPanel } from 'accessible-astro-components'
+---
+
+<Layout>
+  
+  
+  <h1 class="text-2xl mb-6">Graphiques avec tabs accessibles</h1>
+
+  <a href="/" class="rounded bg-gray-600 text-white px-4 py-2 inline-block mb-4">← Retour</a>
+  
+  <Tabs>
+    <TabsList class="!mb-6 !border-b !border-gray-200">
+      <TabsTab id="tab-adelie" controls="panel-adelie" selected class="!px-4 !py-2 !mr-2 !bg-gray-200 !text-gray-700 !rounded-t !border-0 hover:!bg-blue-600 hover:!text-white aria-selected:!bg-blue-600">Adelie</TabsTab>
+      <TabsTab id="tab-gentoo" controls="panel-gentoo" class="!px-4 !py-2 !mr-2 !bg-gray-200 !text-gray-700 !rounded-t !border-0 hover:!bg-yellow-500 hover:!text-white aria-selected:!bg-yellow-500">Gentoo</TabsTab>
+      <TabsTab id="tab-chinstrap" controls="panel-chinstrap" class="!px-4 !py-2 !mr-2 !bg-gray-200 !text-gray-700 !rounded-t !border-0 hover:!bg-orange-500 hover:!text-white aria-selected:!bg-orange-500">Chinstrap</TabsTab>
+    </TabsList>
+
+    <TabsPanel id="panel-adelie" labelledby="tab-adelie" selected class="!p-6 !bg-white !border !border-gray-200 !rounded-b !shadow-lg">
+      <h2 class="!text-xl !mb-4 !font-bold !text-blue-600">Adelie</h2>
+      <GraphicSpecies species="Adelie" />
+    </TabsPanel>
+    <TabsPanel id="panel-gentoo" labelledby="tab-gentoo" class="!p-6 !bg-white !border !border-gray-200 !rounded-b !shadow-lg">
+      <h2 class="!text-xl !mb-4 !font-bold !text-yellow-600">Gentoo</h2>
+      <GraphicSpecies species="Gentoo" />
+    </TabsPanel>
+    <TabsPanel id="panel-chinstrap" labelledby="tab-chinstrap" class="!p-6 !bg-white !border !border-gray-200 !rounded-b !shadow-lg">
+      <h2 class="!text-xl !mb-4 !font-bold !text-orange-600">Chinstrap</h2>
+      <GraphicSpecies species="Chinstrap" />
+    </TabsPanel>
+  </Tabs>
+</Layout>
