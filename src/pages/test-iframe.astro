@@ -11,16 +11,13 @@ import Layout from "../layouts/Layout.astro";
   
   <!-- Menu EN DEHORS de l'iframe -->
   <nav class="mb-6">
-    <div class="flex space-x-4">
-      <a href="/species/iframe/Adelie" target="species-frame" class="rounded bg-blue-500 text-white px-4 py-2 inline-block">
-        Adelie
-      </a>
-      <a href="/species/iframe/Gentoo" target="species-frame" class="rounded bg-yellow-500 text-white px-4 py-2 inline-block">
-        Gentoo
-      </a>
-      <a href="/species/iframe/Chinstrap" target="species-frame" class="rounded bg-orange-500 text-white px-4 py-2 inline-block">
-        Chinstrap
-      </a>
+    <div>
+      <label for="species-select" class="block text-sm font-medium text-gray-700 mb-2">Choisir une espèce de pingouin :</label>
+      <select id="species-select" class="rounded border border-gray-300 px-3 py-2 bg-white">
+        <option value="Adelie">Adelie</option>
+        <option value="Gentoo">Gentoo</option>
+        <option value="Chinstrap">Chinstrap</option>
+      </select>
     </div>
   </nav>
   
@@ -37,12 +34,24 @@ import Layout from "../layouts/Layout.astro";
   <script>
     function adjustHeight() {
       const iframe = document.getElementById('species-iframe');
-      const windowHeight = window.innerHeight;
-      const newHeight = Math.max(windowHeight * 0.6, 550);
-      iframe.style.height = newHeight + 'px';
+      if (iframe) {
+        const windowHeight = window.innerHeight;
+        const newHeight = Math.max(windowHeight * 0.6, 550);
+        iframe.style.height = newHeight + 'px';
+      }
     }
+    
     window.addEventListener('resize', adjustHeight);
     document.addEventListener('DOMContentLoaded', adjustHeight);
+    
+    // Navigation par select
+    document.querySelector("#species-select")?.addEventListener("change", (evt) => {
+      const value = (evt.target as HTMLSelectElement).value;
+      const iframe = document.getElementById('species-iframe') as HTMLIFrameElement;
+      if (iframe && value) {
+        iframe.src = "/species/iframe/" + value;
+      }
+    });
   </script>
   
 </Layout>
