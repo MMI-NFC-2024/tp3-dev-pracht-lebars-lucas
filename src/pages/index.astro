@@ -1,0 +1,31 @@
+---
+import PlotFigure from "../components/PlotFigure.astro";
+import Layout from "../layouts/Layout.astro";
+import * as Plot from "@observablehq/plot";
+import penguins from "../assets/penguins.json";
+---
+
+<Layout>
+  <h1 class="text-2xl mb-6">Test Astro et Plot (Observablehq)</h1>
+  
+  <div class="my-6 space-y-4">
+    <a href="/species/Adelie" class="rounded bg-blue-500 text-white px-4 py-2 inline-block">Voir les penguins Adelie</a>
+    <a href="/species/Gentoo" class="rounded bg-yellow-500 text-white px-4 py-2 inline-block">Voir les penguins Gentoo</a>
+    <a href="/species/Chinstrap" class="rounded bg-orange-500 text-white px-4 py-2 inline-block">Voir les penguins Chinstrap</a>
+    <a href="/test-iframe" class="rounded bg-purple-500 text-white px-4 py-2 inline-block">Navigation avec iframe</a>
+    <a href="/slider" class="rounded bg-green-500 text-white px-4 py-2 inline-block">Slider avec ancres</a>
+  </div>
+  
+  <PlotFigure
+    options={{
+      marks: [
+        Plot.dot(penguins, {
+          x: "culmen_length_mm",
+          y: "culmen_depth_mm",
+          stroke: "species",
+        }),
+      ],
+    }}
+  />
+
+</Layout>

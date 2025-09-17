@@ -1,0 +1,50 @@
+---
+import Layout from "../layouts/Layout.astro";
+import GraphicSpecies from "../components/GraphicSpecies.astro";
+---
+
+<Layout>
+  
+  
+  <h1 class="text-2xl mb-6">Graphiques avec slider</h1>
+
+  <a href="/" class="rounded bg-gray-600 text-white px-4 py-2 inline-block mb-4">← Retour</a>
+  
+  <nav class="mb-6 flex space-x-4">
+    <a href="#adelie" class="rounded bg-blue-500 text-white px-4 py-2">Adelie</a>
+    <a href="#gentoo" class="rounded bg-yellow-500 text-white px-4 py-2">Gentoo</a>
+    <a href="#chinstrap" class="rounded bg-orange-500 text-white px-4 py-2">Chinstrap</a>
+  </nav>
+  
+  
+  <div class="slider">
+    <div id="adelie" class="slide">
+      <h2 class="text-xl mb-4">Adelie</h2>
+      <GraphicSpecies species="Adelie" />
+    </div>
+    
+    <div id="gentoo" class="slide">
+      <h2 class="text-xl mb-4">Gentoo</h2>
+      <GraphicSpecies species="Gentoo" />
+    </div>
+    
+    <div id="chinstrap" class="slide">
+      <h2 class="text-xl mb-4">Chinstrap</h2>
+      <GraphicSpecies species="Chinstrap" />
+    </div>
+  </div>
+</Layout>
+
+<style>
+  .slider {
+    display: flex;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    gap: 2rem;
+  }
+  
+  .slide {
+    min-width: 100%;
+    padding: 1rem;
+  }
+</style>

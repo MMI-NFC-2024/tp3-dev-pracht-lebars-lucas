@@ -1,0 +1,48 @@
+---
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout>
+  <div class="mb-4">
+    <a href="/" class="rounded bg-gray-600 text-white px-4 py-2 inline-block">← Retour à l'accueil</a>
+  </div>
+  
+  <h1 class="text-2xl mb-6">Navigation avec iframe</h1>
+  
+  <!-- Menu EN DEHORS de l'iframe -->
+  <nav class="mb-6">
+    <div class="flex space-x-4">
+      <a href="/species/iframe/Adelie" target="species-frame" class="rounded bg-blue-500 text-white px-4 py-2 inline-block">
+        Adelie
+      </a>
+      <a href="/species/iframe/Gentoo" target="species-frame" class="rounded bg-yellow-500 text-white px-4 py-2 inline-block">
+        Gentoo
+      </a>
+      <a href="/species/iframe/Chinstrap" target="species-frame" class="rounded bg-orange-500 text-white px-4 py-2 inline-block">
+        Chinstrap
+      </a>
+    </div>
+  </nav>
+  
+  <!-- Iframe qui affiche UNE SEULE page d'espèce -->
+  <iframe 
+    name="species-frame"
+    src="/species/iframe/Adelie"
+    class="w-full border border-gray-300 rounded"
+    id="species-iframe"
+    style="height: 550px;"
+    onload="adjustHeight()"
+  ></iframe>
+  
+  <script>
+    function adjustHeight() {
+      const iframe = document.getElementById('species-iframe');
+      const windowHeight = window.innerHeight;
+      const newHeight = Math.max(windowHeight * 0.6, 550);
+      iframe.style.height = newHeight + 'px';
+    }
+    window.addEventListener('resize', adjustHeight);
+    document.addEventListener('DOMContentLoaded', adjustHeight);
+  </script>
+  
+</Layout>
