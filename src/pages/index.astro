@@ -9,9 +9,15 @@ import penguins from "../assets/penguins.json";
   <h1 class="text-2xl mb-6">Test Astro et Plot (Observablehq)</h1>
   
   <div class="my-6 space-y-4">
-    <a href="/species/Adelie" class="rounded bg-blue-500 text-white px-4 py-2 inline-block">Voir les penguins Adelie</a>
-    <a href="/species/Gentoo" class="rounded bg-yellow-500 text-white px-4 py-2 inline-block">Voir les penguins Gentoo</a>
-    <a href="/species/Chinstrap" class="rounded bg-orange-500 text-white px-4 py-2 inline-block">Voir les penguins Chinstrap</a>
+    <div class="mb-4">
+      <label for="species" class="block text-sm font-medium text-gray-700 mb-2">Choisir une espèce de pingouin :</label>
+      <select id="species" class="rounded border border-gray-300 px-3 py-2 bg-white">
+        <option value="">-- Sélectionner une espèce --</option>
+        <option value="Adelie">Adelie</option>
+        <option value="Chinstrap">Chinstrap</option>
+        <option value="Gentoo">Gentoo</option>
+      </select>
+    </div>
     <a href="/test-iframe" class="rounded bg-purple-500 text-white px-4 py-2 inline-block">Navigation avec iframe</a>
     <a href="/slider" class="rounded bg-green-500 text-white px-4 py-2 inline-block">Slider avec ancres</a>
   </div>
@@ -29,3 +35,12 @@ import penguins from "../assets/penguins.json";
   />
 
 </Layout>
+
+<script>
+document.querySelector("#species")?.addEventListener("change", (evt) => {
+  const value = (evt.target as HTMLSelectElement).value;
+  if (value) {
+    location.pathname = "/species/" + value;
+  }
+});
+</script>
